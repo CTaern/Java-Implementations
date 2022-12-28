@@ -1,72 +1,21 @@
-public class stack {
-    int [] items;
-    int top;
+package generics;
 
-    public stack(int size){
-        this.items = new int[size];
-        this.top = -1;
+import java.util.Collections;
+import java.util.List;
 
-    }
-    public void push(int val){
-        if(isFull()){
-            System.out.println("stack is full");
-        }else{
-            this.items[++this.top]=val;
+public interface Stack<T> {
+
+    void push(T item);
+    T pop();
+    boolean empty();
+
+    List<T> toList();
+
+    default void addAll(Stack<? extends T> aStack) {
+        List<? extends T> values = aStack.toList();
+        Collections.reverse(values);
+        for(T value : values){
+            push(value);
         }
     }
-    public int pop(){
-        if(isEmpty()){
-            System.out.println("stack is empty");
-            return -1;
-        }else{
-            this.top--;
-            return this.items[this.top+1];
-        }
-    }
-    public boolean isEmpty(){
-        return this.top ==-1;
-    }
-    public boolean isFull(){
-        return this.top == this.items.length-1;
-    }
-    public int size(){
-        return this.items.length;
-    }
-    public int peek(){
-        return this.items[this.top];
-    }
-    public void clear(){
-        this.top =-1;
-    }
-    public void display(){
-        if(!isEmpty()){
-            for(int i=top;i>=0;i--){
-                System.out.println(this.items[i]);
-            }
-        }
-    }
-    public int maxnumber(){
-        int maxn =-1;
-        if(isEmpty()){
-            System.out.println("Stack is empty");
-            return -1;
-        }else{
-            for(int i=0;i<this.items.length;i++){
-                if(this.items[i]>maxn)
-                    maxn = this.items[i];
-            }
-        }
-        return maxn;
-    }
-
-    /*public void removeitem(int val){
-        while(!isEmpty()){
-            for(int i=0;i<this.items.length;i++){
-                (val == this.items[i])
-
-            }
-        }
-
-    }*/
-
 }
