@@ -1,16 +1,10 @@
-public class Node <S extends Comparable>{
-    public S value;
-    public Node<S> next;
-    public Node<S> previous;
-
-
-
-    public Node(S val){
+public class Node <T extends Comparable>{
+    public T value;
+    public Node<T> next;
+    public Node(T val){
         this.value=val;
         this.next=null;
-        this.previous=null;
     }
-
     public String toString(){
         return this.value.toString();
     }
